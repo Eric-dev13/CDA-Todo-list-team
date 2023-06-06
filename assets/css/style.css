@@ -2,7 +2,7 @@
     color:orange;
 }
 
-.task-title{
+.task-date{
     display: flex;
     justify-content: space-between;
 }

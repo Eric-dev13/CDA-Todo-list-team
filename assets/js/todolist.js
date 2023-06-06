@@ -54,7 +54,7 @@ function displayTasks(taches){
             <li class="list-group-item border-dark" id="${tache.id}">
                 <span class="fw-semibold">Titre : ${tache.titre}</span><br>
                 <span class="fw-semibold">Description : ${tache.description}</span><br>
-                <div class="task-title">
+                <div class="task-date">
                     <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
                 </div>
             </li>
