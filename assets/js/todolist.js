@@ -20,10 +20,12 @@ let taches = [
 ];
 
 let todolist = document.querySelector('#todolist');
+document.getElementById('inserer').addEventListener('click',insertTask);
 
 
-
-
+// ************************
+// **********     FUNCTIONS  **************
+// ************************
 
 // fonction pour inserer une tache
 function insertTask() {
@@ -36,24 +38,16 @@ function insertTask() {
     new_task.id=3;
     new_task.titre=titre;
     new_task.description=description;
-    new_task.date='06/06/2023';
+    new_task.date=new Date();
     new_task.etat=0;
 
   
     taches.push(new_task); // Ajout de l'objet dans le tableau taches
-  
+    console.log('1',taches);
+    todolist.innerHTML='';
+    console.log('2',taches);
+    displayTasks(taches);
 }
-
-
-
-document.getElementById('inserer').addEventListener('click',insertTask);
-
-
-
-// ************************
-// **********     FUNCTIONS  **************
-// ************************
-
 
 // Afficher / raffraichir les taches
 function displayTasks(taches){
