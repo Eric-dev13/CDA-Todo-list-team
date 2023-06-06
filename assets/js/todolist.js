@@ -12,6 +12,10 @@ let taches = [{
     date: "",
     etat: 0
 }
-
-
 ];
+
+let todolist = document.querySelector('#todolist');
+taches.forEach((tache) => {
+    todolist.innerHTML += `<li class="list-group-item">${tache.titre} <br> ${tache.description} </li>`;
+    
+});
