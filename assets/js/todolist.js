@@ -17,5 +17,30 @@ let taches = [{
 let todolist = document.querySelector('#todolist');
 taches.forEach((tache) => {
     todolist.innerHTML += `<li class="list-group-item">${tache.titre} <br> ${tache.description} </li>`;
-    
+
 });
+
+
+// fonction pour inserer une tache
+function insertTask() {
+    var titre = document.getElementById("exampleInputEmail1").value;
+    var description = document.getElementById("exampleInputPassword1").value;
+
+  
+    // Création d'un objet avec les valeurs récupérées
+    let new_task = {}
+    new_task.id=3;
+    new_task.titre=titre;
+    new_task.description=description;
+    new_task.date='06/06/2023';
+    new_task.etat=0;
+
+  
+    taches.push(new_task); // Ajout de l'objet dans le tableau taches
+  
+}
+
+
+
+document.getElementById('inserer').addEventListener('click',insertTask);
+
