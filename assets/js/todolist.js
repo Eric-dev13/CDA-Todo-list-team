@@ -42,6 +42,7 @@ taches.forEach((tache) => {
     );
 });
 
+
 // fonction pour inserer une tache
 function insertTask() {
     var titre = document.getElementById("exampleInputEmail1").value;
@@ -92,4 +93,8 @@ function displayTasks(taches){
 // ************************
 
 
+
 displayTasks(taches);
+
+
+
