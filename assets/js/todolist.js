@@ -1,8 +1,8 @@
-// ************************
+// **************************************
 // **********    GLOBALES  **************
-// ************************
+// **************************************
 
-let taches = [
+const taches = [
     {
         id: 1,
         titre: "faire l'appli",
@@ -19,20 +19,17 @@ let taches = [
     }
 ];
 
-let todolist = document.querySelector('#todolist');
-document.getElementById('inserer').addEventListener('click',insertTask);
+const todolist = document.querySelector('#todolist');
 
-
-// ************************
+// ****************************************
 // **********     FUNCTIONS  **************
-// ************************
+// ****************************************
 
 // fonction pour inserer une tache
 function insertTask() {
     var titre = document.getElementById("exampleInputEmail1").value;
     var description = document.getElementById("exampleInputPassword1").value;
 
-  
     // Création d'un objet avec les valeurs récupérées
     let new_task = {}
     new_task.id=3;
@@ -41,36 +38,40 @@ function insertTask() {
     new_task.date=new Date();
     new_task.etat=0;
 
-  
     taches.push(new_task); // Ajout de l'objet dans le tableau taches
-    console.log('1',taches);
-    todolist.innerHTML='';
-    console.log('2',taches);
     displayTasks(taches);
 }
 
-// Afficher / raffraichir les taches
+/**  Afficher / raffraichir les taches
+ *  @param array taches[]
+ **/ 
 function displayTasks(taches){
+    todolist.innerHTML='';
+    var index = 1;
     taches.forEach((tache) => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         todolist.innerHTML += `
-        <li class="list-group-item border-dark" id="${tache.id}">
-            <span class="fw-semibold">Titre</span>: ${tache.titre}<br>
-            <span class="fw-semibold">Description</span>: ${tache.description}<br>
-            <span class="fw-semibold">Date</span>: ${tache.date.toLocaleDateString('fr-FR', options)}
-        </li>
+            <li class="list-group-item border-dark" id="${tache.id}">
+                <span class="fw-semibold">Titre : ${tache.titre}</span><br>
+                <span class="fw-semibold">Description : ${tache.description}</span><br>
+                <div class="task-title">
+                    <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
+                </div>
+            </li>
         `;
+        index++;
     });   
 }
 
 
-// ************************
+// ************************************
 // **********     CODE   **************
-// ************************
-
-
+// ************************************
 
 displayTasks(taches);
+
+document.getElementById('inserer').addEventListener('click',insertTask);
+
 
 //pour chaque tache
 taches.forEach((tache) => {
