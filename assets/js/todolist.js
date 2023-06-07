@@ -70,24 +70,23 @@ function displayTasks(taches) {
                 <div class="task-date">
                     <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
                 </div>
-                <div class="task-date">
-                    <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
-                </div>
             </li>
         `;
         }else{
             todolist.innerHTML += `
             <li class="list-group-item border-dark" id="${tache.id}">
-                <span class="fw-semibold">Titre : ${tache.titre}</span><br>
-                <span class="fw-semibold">Description : ${tache.description}</span><br>
-                <div class="d-flex justify-content-between border">
-                <div class="border">
-                    <button>editer<button>
+                <div class="d-flex justify-content-between">
+                    <div class="border">
+                        <span class="fw-semibold">Titre : ${tache.titre}</span><br>
+                        <span class="fw-semibold">Description : ${tache.description}</span><br>
+                        <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span>
+                    </div>
+                    <span>${index}</span>
+                    <div class="d-flex flex-column justify-content-between border">
+                        <button>Editer</button>
+                        <button>Supprimer</button>
+                    </div>
                 </div>
-                <div>
-                    <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
-                </div>
-                <div>
             </li>
         `;
     }
