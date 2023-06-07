@@ -83,7 +83,7 @@ function tacheFait() {
         });
         
     });
-console.log(taches);
+
 //  var test = compteurTacheFait();
 //  console.log(test)
 }
