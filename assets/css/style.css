@@ -1,3 +1,8 @@
 .fait {
     color:orange;
 }
+
+.task-date{
+    display: flex;
+    justify-content: space-between;
+}
