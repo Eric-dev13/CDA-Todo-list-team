@@ -22,7 +22,14 @@ function tacheFait() {
         //a chaque click sur l'element
         identifiant.addEventListener("click", function () {
             //on ajoute une classe
-            identifiant.classList.add("fait");
+            //identifiant.classList.add("fait");
+            var nClass=identifiant.getAttribute('class');
+            console.log(nClass);
+            if(nClass =='list-group-item border-dark fait'){
+                identifiant.classList.add("fait");
+            }else {
+                identifiant.classList.toggle("aFaire");
+            }
             tache.etat = 1;
             compteur++ ;
             //alert(i);
