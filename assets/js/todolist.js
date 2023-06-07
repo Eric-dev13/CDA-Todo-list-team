@@ -108,8 +108,9 @@ function compteurTacheFait( taches ) {
 displayTasks(taches);
 
 document.getElementById('inserer').addEventListener('click', insertTask);
-
-
+document.getElementById('nb_tacheFait').addEventListener('click',function(){
+    alert("Vous avez : " + compteur + "  " +"taches réalisées");
+});
 //pour chaque tache
 // var res = compteurTacheFait(tacheFait());
 // console.log(res);
