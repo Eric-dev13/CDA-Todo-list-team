@@ -1,9 +1,9 @@
 .fait {
-    color:orange;
+    background-color:transparent;
 }
 
-.aFaire {
-    color:blue;
+.fini {
+    background-color:orange;
 }
 
 .task-date{

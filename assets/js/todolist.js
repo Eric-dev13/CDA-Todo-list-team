@@ -28,7 +28,7 @@ function tacheFait() {
             if(nClass =='list-group-item border-dark fait'){
                 identifiant.classList.add("fait");
             }else {
-                identifiant.classList.toggle("aFaire");
+                identifiant.classList.toggle("fini");
             }
             tache.etat = 1;
             compteur++ ;
