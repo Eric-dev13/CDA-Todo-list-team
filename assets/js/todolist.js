@@ -57,39 +57,40 @@ function insertTask() {
  *  @param array taches[]
  **/
 function displayTasks(taches) {
+    // Vide la liste des taches (l'élément ul)
     todolist.innerHTML = '';
+    // initialise un compteur
     var index = 1;
+    // Parcours le tableau des taches puis les affiches dans la liste des taches (l'élément ul)
     taches.forEach((tache) => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-        if( tache.etat === 1 ){
+        // Si la tache a été réalisée, on ajoute une classe pour modifier la couleur d'arrière plan
+        let addClass = '';
+        if( tache.etat === 1 ) {
+            addClass="fait";
+        }
+        // On affiche les taches les unes a la suite de l'autre
         todolist.innerHTML += `
-            <li class="list-group-item border-dark fait" id="${tache.id}">
-                <span class="fw-semibold">Titre : ${tache.titre}</span><br>
-                <span class="fw-semibold">Description : ${tache.description}</span><br>
-                <div class="task-date">
-                    <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
-                </div>
-            </li>
-        `;
-        }else{
-            todolist.innerHTML += `
-            <li class="list-group-item border-dark" id="${tache.id}">
-                <div class="d-flex justify-content-between">
-                    <div class="border">
-                        <span class="fw-semibold">Titre : ${tache.titre}</span><br>
-                        <span class="fw-semibold">Description : ${tache.description}</span><br>
-                        <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span>
+            <li class="list-group-item ${addClass}" id="${tache.id}">
+                <div class="d-flex justify-content-between p-3 shadow">
+                    <span class="px-1 px-md-5 border">${index}</span>
+                    <div class="px-1 px-md-5 text-dark border">
+                        <h5 class="fw-bold">${tache.titre}</h5><br>
+                        <p class="font-weight-light">Description : ${tache.description}</p><br>
+                        <small class="fw-bold text-muted">Crée le ${tache.date.toLocaleDateString('fr-FR', options)}</small>
                     </div>
-                    <span>${index}</span>
-                    <div class="d-flex flex-column justify-content-between border">
-                        <button>Editer</button>
-                        <button>Supprimer</button>
+                    <div class="px-1 px-md-5 d-flex flex-column justify-content-center border">
+                        <a href="#" class="btn btn-primary p-2" id ="editer">
+                            <img src="assets/img/update.png" alt="Editer" width="30">
+                        </a>
+                        <a href="#" class="btn btn-danger mt-2 p-2" id="supprimer">
+                            <img src="assets/img/trash.png" alt="Supprimer" width="30">
+                        </a>
                     </div>
                 </div>
             </li>
         `;
-    }
 
         index++;
     });
