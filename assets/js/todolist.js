@@ -13,6 +13,28 @@ let compteur = 0;
 // **********     FUNCTIONS  **************
 // ****************************************
 
+function tacheFait() {
+    taches.forEach((tache) => {
+        //i = l'id de l'element
+        var i = tache.id;
+        //pour l'element dont i est l'id
+        const identifiant = document.getElementById(i);
+        //a chaque click sur l'element
+        identifiant.addEventListener("click", function () {
+            //on ajoute une classe
+            identifiant.classList.add("fait");
+            tache.etat = 1;
+            compteur++ ;
+            //alert(i);
+            console.log(compteur);
+        });
+        
+    });
+    
+//  var test = compteurTacheFait();
+//  console.log(test)
+}
+
 // fonction pour inserer une tache
 function insertTask() {
     var idIndex = taches.length + 1;
@@ -29,7 +51,6 @@ function insertTask() {
 
     taches.push(new_task); // Ajout de l'objet dans le tableau taches
     displayTasks(taches);
-    console.log(taches);
 }
 
 /**  Afficher / raffraichir les taches
@@ -40,7 +61,19 @@ function displayTasks(taches) {
     var index = 1;
     taches.forEach((tache) => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+        if( tache.etat === 1 ){
         todolist.innerHTML += `
+            <li class="list-group-item border-dark fait" id="${tache.id}">
+                <span class="fw-semibold">Titre : ${tache.titre}</span><br>
+                <span class="fw-semibold">Description : ${tache.description}</span><br>
+                <div class="task-date">
+                    <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
+                </div>
+            </li>
+        `;
+        }else{
+            todolist.innerHTML += `
             <li class="list-group-item border-dark" id="${tache.id}">
                 <span class="fw-semibold">Titre : ${tache.titre}</span><br>
                 <span class="fw-semibold">Description : ${tache.description}</span><br>
@@ -49,12 +82,13 @@ function displayTasks(taches) {
                 </div>
             </li>
         `;
+    }
+
         index++;
     });
     tacheFait();
     
 }
-
 
 function compteurTacheFait( taches ) {
     //tacheFait()
@@ -67,26 +101,6 @@ function compteurTacheFait( taches ) {
 }
 
 
-function tacheFait() {
-    taches.forEach((tache) => {
-        //i = l'id de l'element
-        var i = tache.id;
-        //pour l'element dont i est l'id
-        const identifiant = document.getElementById(i);
-        //a chaque click sur l'element
-        identifiant.addEventListener("click", function () {
-            //on ajoute une classe
-            identifiant.classList.add("fait");
-            tache.etat = 1;
-            //alert(i);
-            console.log(tache);
-        });
-        
-    });
-
-//  var test = compteurTacheFait();
-//  console.log(test)
-}
 // ************************************
 // **********     CODE   **************
 // ************************************
