@@ -15,19 +15,21 @@ let compteur = 0;
 
 // fonction pour inserer une tache
 function insertTask() {
+    var idIndex = taches.length + 1;
     var titre = document.getElementById("exampleInputEmail1").value;
     var description = document.getElementById("exampleInputPassword1").value;
 
     // Création d'un objet avec les valeurs récupérées
     let new_task = {}
-    new_task.id = 3;
-    new_task.titre = titre;
-    new_task.description = description;
-    new_task.date = new Date();
-    new_task.etat = 0;
+    new_task.id = idIndex;
+    new_task.titre=titre;
+    new_task.description=description;
+    new_task.date=new Date();
+    new_task.etat=0;
 
     taches.push(new_task); // Ajout de l'objet dans le tableau taches
     displayTasks(taches);
+    console.log(taches);
 }
 
 /**  Afficher / raffraichir les taches
