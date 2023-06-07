@@ -70,6 +70,9 @@ function displayTasks(taches) {
                 <div class="task-date">
                     <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
                 </div>
+                <div class="task-date">
+                    <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
+                </div>
             </li>
         `;
         }else{
@@ -77,9 +80,14 @@ function displayTasks(taches) {
             <li class="list-group-item border-dark" id="${tache.id}">
                 <span class="fw-semibold">Titre : ${tache.titre}</span><br>
                 <span class="fw-semibold">Description : ${tache.description}</span><br>
-                <div class="task-date">
+                <div class="d-flex justify-content-between border">
+                <div class="border">
+                    <button>editer<button>
+                </div>
+                <div>
                     <span class="fw-semibold">Date : ${tache.date.toLocaleDateString('fr-FR', options)}</span><span>${index}</span>
                 </div>
+                <div>
             </li>
         `;
     }
