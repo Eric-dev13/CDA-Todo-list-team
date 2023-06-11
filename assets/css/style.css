@@ -6,3 +6,8 @@
     display: flex;
     justify-content: space-between;
 }
+.mt-4 .titre{
+    display: flex;
+   justify-content: space-between;
+    
+}
