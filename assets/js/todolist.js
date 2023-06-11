@@ -1,7 +1,8 @@
 // **************************************
 // **********    GLOBALES  **************
 // **************************************
-
+// afficheCompteur dans span pour compter le nombre de taches réaliser
+var afficheCompteur = document.getElementById("compteur");
 const taches = [
   
 ];
@@ -25,8 +26,9 @@ function tacheFait() {
             identifiant.classList.add("fait");
             tache.etat = 1;
             compteur++ ;
+            afficheCompteur.innerHTML=compteur;
             //alert(i);
-            console.log(compteur);
+            //console.log(compteur);
         });
         
     });
@@ -43,6 +45,7 @@ function insertTask() {
 
     // Création d'un objet avec les valeurs récupérées
     let new_task = {}
+
     new_task.id = idIndex;
     new_task.titre=titre;
     new_task.description=description;
@@ -90,15 +93,15 @@ function displayTasks(taches) {
     
 }
 
-function compteurTacheFait( taches ) {
-    //tacheFait()
-    taches.forEach((tache1) => {
-        if (tache1.etat == 1) {
-            compteur += 1;
-        }
-    });
-    return compteur;
-}
+// function compteurTacheFait( taches ) {
+//     //tacheFait()
+//     taches.forEach((tache1) => {
+//         if (tache1.etat == 1) {
+//             compteur += 1;
+//         }
+//     });
+//     return compteur;
+// }
 
 
 // ************************************
@@ -107,10 +110,14 @@ function compteurTacheFait( taches ) {
 
 displayTasks(taches);
 
-document.getElementById('inserer').addEventListener('click', insertTask);
-document.getElementById('nb_tacheFait').addEventListener('click',function(){
-    alert("Vous avez : " + compteur + "  " +"taches réalisées");
+document.getElementById('inserer').addEventListener('click', function(){
+insertTask();
+
+
 });
+
+
+
 //pour chaque tache
 // var res = compteurTacheFait(tacheFait());
 // console.log(res);
