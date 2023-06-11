@@ -71,10 +71,10 @@ function insertTask() {
  *  @param array taches[]
  **/
 function displayTasks() {
-    // Si pas taches enregistré dans le local storage on sort de la fonction.
-    if (!getFromLocalStorage()) return;
-    //const taches = getFromLocalStorage();
     const allTaches = getFromLocalStorage();
+    // Si pas taches enregistré dans le local storage on sort de la fonction.
+    if (!allTaches) return;
+    // clone le tableau 
     taches = allTaches.slice();
     console.log(taches);
 
