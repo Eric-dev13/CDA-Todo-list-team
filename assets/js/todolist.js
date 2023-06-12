@@ -140,11 +140,7 @@ function displayTasks() {
 
 displayTasks();
 
-document.getElementById('inserer').addEventListener('click', function(){
-insertTask();
-
-
-});
+document.getElementById('inserer').addEventListener('click', insertTask);
 
 
 //pour chaque tache
