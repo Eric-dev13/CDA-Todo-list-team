@@ -14,8 +14,19 @@ let compteur = 0;
 // ****************************************
 // **********     FUNCTIONS  **************
 // ****************************************
-
+function compteurFunction() {
+    compteur = 0;
+    //tacheFait()
+    taches.forEach((tache1) => {
+        if (tache1.etat == 1) {
+            compteur ++;
+        }
+    });
+    return compteur;
+    // afficheCompteurARealiser.innerHTML=compteurARealiser;
+}
 function tacheFait() {
+   compteur= compteurFunction();
     taches.forEach((tache) => {
         //i = l'id de l'element
         var i = tache.id;
@@ -23,29 +34,29 @@ function tacheFait() {
         const identifiant = document.getElementById(i);
         //a chaque click sur l'element
         identifiant.addEventListener("click", function () {
-            //on ajoute une classe
-            //identifiant.classList.add("fait");
-            var nClass=identifiant.getAttribute('class');
-            console.log(nClass);
-            if(nClass =='list-group-item border-dark fait'){
-                identifiant.classList.add("fait");
-            }else {
-                identifiant.classList.toggle("fini");
+
+            if (tache.etat == 0) {
+                tache.etat = 1;
+                compteur++;
+                identifiant.classList.add("fini");
+
+
+            } else if (tache.etat == 1) {
+                tache.etat = 0;
+                
+                identifiant.classList.remove("fini");
+                compteur--;
             }
-            if (tache.etat==0){
-                compteur++ ;
-            }
-            tache.etat = 1;
-            
-            afficheCompteur.innerHTML=compteur;
-            //alert(i);
-            console.log(compteur);
+            setToLocalStorage(taches);
+            displayTasks();
+
+          
+           
         });
-        
+        afficheCompteur.innerHTML = compteur;
+
     });
-    
-//  var test = compteurTacheFait();
-//  console.log(test)
+
 }
 
 // fonction pour inserer une tache
@@ -86,7 +97,7 @@ function displayTasks() {
     if (!allTaches) return;
     // clone le tableau 
     taches = allTaches.slice();
-    console.log(taches);
+    console.log('stock', taches);
 
     // Vide la liste des taches (l'élément ul)
     todolist.innerHTML = '';
@@ -99,7 +110,7 @@ function displayTasks() {
         // Si la tache a été réalisée, on ajoute une classe pour modifier la couleur d'arrière plan
         let addClass = '';
         if (tache.etat === 1) {
-            addClass = "fait";
+            addClass = "fini";
         }
         // On affiche les taches les unes a la suite de l'autre
         todolist.innerHTML += `
