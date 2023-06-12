@@ -91,7 +91,7 @@ function displayTasks() {
     // Vide la liste des taches (l'élément ul)
     todolist.innerHTML = '';
     // initialise un compteur
-    var index = 1;
+    let index = 1;
     // Parcours le tableau des taches puis les affiches dans la liste des taches (l'élément ul)
     taches.forEach((tache) => {
         // format de la date
@@ -112,10 +112,10 @@ function displayTasks() {
                         <small class="fw-bold text-muted">Crée le ${new Date(tache.date).toLocaleDateString('fr-FR', options)}</small>
                     </div>
                     <div class="px-1 px-md-5 d-flex flex-column justify-content-center border">
-                        <a href="#" class="btn btn-primary p-2" id ="editer">
+                        <a href="#" class="editer btn btn-primary p-2">
                             <img src="assets/img/update.png" alt="Editer" width="30">
                         </a>
-                        <a href="#" class="btn btn-danger mt-2 p-2" id="supprimer">
+                        <a href="#" class="supprimer btn btn-danger mt-2 p-2" style="z-index:5;">
                             <img src="assets/img/trash.png" alt="Supprimer" width="30">
                         </a>
                     </div>
@@ -125,7 +125,21 @@ function displayTasks() {
 
         index++;
     });
+
     tacheFait();
+
+    // Suppression d'une tache par son index
+    let eletsASup = document.querySelectorAll('.supprimer');
+    for (let index = 0; index < eletsASup.length; index++) {
+        const element = eletsASup[index];
+        eletsASup[index].addEventListener('click', () => {
+             console.log('delete: ', index);
+            taches.splice(index,1);
+            setToLocalStorage(taches);
+            displayTasks();
+
+        });
+    } 
 }
 
 // function compteurTacheFait( taches ) {
