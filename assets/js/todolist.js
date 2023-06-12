@@ -32,8 +32,12 @@ function tacheFait() {
             }else {
                 identifiant.classList.toggle("fini");
             }
+            if (tache.etat==0){
+                compteur++ ;
+            }
             tache.etat = 1;
-            compteur++ ;
+            
+            afficheCompteur.innerHTML=compteur;
             //alert(i);
             console.log(compteur);
         });
