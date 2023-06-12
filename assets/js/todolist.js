@@ -4,10 +4,9 @@ import { getFromLocalStorage, setToLocalStorage } from "./localStorage.js";
 // **************************************
 // **********    GLOBALES  **************
 // **************************************
-
-let taches = [
-
-];
+// afficheCompteur dans span pour compter le nombre de taches réaliser
+var afficheCompteur = document.getElementById("compteur");
+let taches = [];
 
 const todolist = document.querySelector('#todolist');
 let compteur = 0;
@@ -28,9 +27,10 @@ function tacheFait() {
             //on ajoute une classe
             identifiant.classList.add("fait");
             tache.etat = 1;
-            compteur++;
+            compteur++ ;
+            afficheCompteur.innerHTML=compteur;
             //alert(i);
-            console.log(compteur);
+            //console.log(compteur);
         });
 
     });
@@ -47,6 +47,7 @@ function insertTask() {
 
     // Création d'un objet avec les valeurs récupérées.
     let new_task = {}
+
     new_task.id = idIndex;
     new_task.titre = titre;
     new_task.description = description;
@@ -119,15 +120,15 @@ function displayTasks() {
 
 }
 
-function compteurTacheFait(taches) {
-    //tacheFait()
-    taches.forEach((tache1) => {
-        if (tache1.etat == 1) {
-            compteur += 1;
-        }
-    });
-    return compteur;
-}
+// function compteurTacheFait( taches ) {
+//     //tacheFait()
+//     taches.forEach((tache1) => {
+//         if (tache1.etat == 1) {
+//             compteur += 1;
+//         }
+//     });
+//     return compteur;
+// }
 
 
 // ************************************
@@ -136,7 +137,12 @@ function compteurTacheFait(taches) {
 
 displayTasks();
 
-document.getElementById('inserer').addEventListener('click', insertTask);
+document.getElementById('inserer').addEventListener('click', function(){
+insertTask();
+
+
+});
+
 
 //pour chaque tache
 // var res = compteurTacheFait(tacheFait());
