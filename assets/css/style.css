@@ -1,13 +1,13 @@
 .fait {
-    color:orange;
+    background-color:orange;
 }
 
 .task-date{
     display: flex;
     justify-content: space-between;
 }
-.mt-4 .titre{
+
+.affichage{
     display: flex;
-   justify-content: space-between;
-    
+    justify-content: space-between;
 }
