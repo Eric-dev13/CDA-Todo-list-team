@@ -2,9 +2,7 @@
 // **********    GLOBALES  **************
 // **************************************
 
-const taches = [
-  
-];
+const taches = [];
 
 const todolist = document.querySelector('#todolist');
 let compteur = 0;
