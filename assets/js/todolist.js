@@ -6,6 +6,10 @@ import { getFromLocalStorage, setToLocalStorage } from "./localStorage.js";
 // **************************************
 // afficheCompteur dans span pour compter le nombre de taches réaliser
 var afficheCompteur = document.getElementById("compteur");
+const titreTache = document.getElementById("exampleInputEmail1");
+const descriptionTache = document.getElementById("exampleInputPassword1");
+const buttonForm = document.getElementById("inserer");
+const inputTachesIndex = document.getElementById("tacheId")
 let taches = [];
 
 const todolist = document.querySelector('#todolist');
@@ -25,13 +29,14 @@ function compteurFunction() {
     return compteur;
     // afficheCompteurARealiser.innerHTML=compteurARealiser;
 }
+
 function tacheFait() {
    compteur= compteurFunction();
     taches.forEach((tache) => {
         //i = l'id de l'element
         var i = tache.id;
         //pour l'element dont i est l'id
-        const identifiant = document.getElementById(i);
+        var identifiant = document.getElementById(i);
         //a chaque click sur l'element
         identifiant.addEventListener("click", function () {
 
@@ -48,10 +53,7 @@ function tacheFait() {
                 compteur--;
             }
             setToLocalStorage(taches);
-            displayTasks();
-
-          
-           
+            displayTasks();         
         });
         afficheCompteur.innerHTML = compteur;
 
@@ -61,29 +63,32 @@ function tacheFait() {
 
 // fonction pour inserer une tache
 function insertTask() {
-    var idIndex = taches.length + 1;
-    var titre = document.getElementById("exampleInputEmail1").value;
-    var description = document.getElementById("exampleInputPassword1").value;
+    if (buttonForm.innerHTML == 'Ajouter'){
+        // console.log(buttonForm.innerHTML)
+        var idIndex = taches.length + 1;
+        var titre = document.getElementById("exampleInputEmail1").value;
+        var description = document.getElementById("exampleInputPassword1").value;
+    
+        // Création d'un objet avec les valeurs récupérées.
+        let new_task = {}
+    
+        new_task.id = idIndex;
+        new_task.titre = titre;
+        new_task.description = description;
+        new_task.date = new Date();
+        new_task.etat = 0;    
+        taches.push(new_task); // Ajout de l'objet dans le tableau taches
+        // setToLocalStorage(taches);
+        // displayTasks();
 
-    // Création d'un objet avec les valeurs récupérées.
-    let new_task = {}
-
-    new_task.id = idIndex;
-    new_task.titre = titre;
-    new_task.description = description;
-    new_task.date = new Date();
-    new_task.etat = 0;
-
-    //Autre méthodes
-    // let new_task_2 = {
-    //     id: idIndex,
-    //     titre: titre,
-    //     description: description,
-    //     date: new Date(),
-    //     etat: 0
-    // }
-
-    taches.push(new_task); // Ajout de l'objet dans le tableau taches
+    }else if (buttonForm.innerHTML == 'Modifier'){
+        console.log(taches[inputTachesIndex.value], '**');
+        taches[inputTachesIndex.value].titre = titreTache.value;
+        taches[inputTachesIndex.value].description = descriptionTache.value;
+        buttonForm.innerHTML = `Ajouter`;  
+    }
+    titreTache.value = '';
+    descriptionTache.value = '';
     setToLocalStorage(taches);
     displayTasks();
 }
@@ -97,7 +102,7 @@ function displayTasks() {
     if (!allTaches) return;
     // clone le tableau 
     taches = allTaches.slice();
-    console.log('stock', taches);
+    // console.log('stock', taches);
 
     // Vide la liste des taches (l'élément ul)
     todolist.innerHTML = '';
@@ -119,7 +124,7 @@ function displayTasks() {
                     <span class="px-1 px-md-5 border">${index}</span>
                     <div class="px-1 px-md-5 text-dark border">
                         <h5 class="fw-bold">${tache.titre}</h5><br>
-                        <p class="font-weight-light">Description : ${tache.description}</p><br>
+                        <p class="font-weight-light">${tache.description}</p><br>
                         <small class="fw-bold text-muted">Crée le ${new Date(tache.date).toLocaleDateString('fr-FR', options)}</small>
                     </div>
                     <div class="px-1 px-md-5 d-flex flex-column justify-content-center border">
@@ -144,10 +149,26 @@ function displayTasks() {
     for (let index = 0; index < eletsASup.length; index++) {
         const element = eletsASup[index];
         eletsASup[index].addEventListener('click', () => {
-             console.log('delete: ', index);
-            taches.splice(index,1);
+            taches.splice(index, 1);
             setToLocalStorage(taches);
             displayTasks();
+        });
+    } 
+
+    // Modification d'une tache par son index
+    let eltsAEditer = document.querySelectorAll('.editer');
+    for (let index1 = 0; index1 < eltsAEditer.length; index1++) {
+        const element1 = eltsAEditer[index1];
+        eltsAEditer[index1].addEventListener('click', (e) => {
+            e.stopPropagation();
+            // console.log(taches[index1]);
+            titreTache.value = `${taches[index1].titre}`; 
+            descriptionTache.value =`${taches[index1].description}`;
+            inputTachesIndex.value =`${index1}`;
+            buttonForm.innerHTML = `Modifier`;
+            // taches.s;
+            // setToLocalStorage(taches);
+            // displayTasks();
 
         });
     } 
@@ -169,8 +190,7 @@ function displayTasks() {
 
 displayTasks();
 
-document.getElementById('inserer').addEventListener('click', insertTask);
-
+buttonForm.addEventListener('click', insertTask);
 
 //pour chaque tache
 // var res = compteurTacheFait(tacheFait());
