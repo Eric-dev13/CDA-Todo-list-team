@@ -26,8 +26,11 @@ function tacheFait() {
         identifiant.addEventListener("click", function () {
             //on ajoute une classe
             identifiant.classList.add("fait");
+            if (tache.etat==0){
+                compteur++ ;
+            }
             tache.etat = 1;
-            compteur++ ;
+            
             afficheCompteur.innerHTML=compteur;
             //alert(i);
             //console.log(compteur);
