@@ -22,13 +22,12 @@
             <form action="">
                 <form>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">champ 1</label>
-                        <input type="txt" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="exampleInputEmail1" class="form-label">Titre de la tache</label>
+                        <input type="txt" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="Se rendre au hackathon">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">champ 2</label>
-                        <input type="txt" class="form-control" id="exampleInputPassword1">
+                        <label for="exampleInputPassword1" class="form-label">Description</label>
+                        <input type="txt" class="form-control" id="exampleInputPassword1" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni neque, beatae qui blanditiis laboriosam soluta, laudantium alias maiores laborum id itaque explicabo quo eum sint, suscipit totam adipisci hic nulla.">
                     </div>
 
                     <button type="button" class="btn btn-primary" id ="inserer">action</button>
@@ -37,13 +36,16 @@
             </form>
         </div>
         <div class="mt-4">
+            <div class="affichage">
             <h2 class="fw-bold">Liste des taches</h2>
+            <h3 >Nombre de taches réalisées : <span id="compteur"></span></h3>
+        </div>
             <ul class="list-group" id="todolist">
                 <!-- <li class="list-group-item">An item</li> -->
             </ul>
         </div>
 
-        <script src="assets/js/todolist.js"></script>
+        <script type="module" src="/assets/js/todolist.js"></script>
 </body>
 
 </html>
