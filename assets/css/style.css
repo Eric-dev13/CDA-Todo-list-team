@@ -1,4 +1,8 @@
 .fait {
+    background-color:transparent;
+}
+
+.fini {
     background-color:orange;
 }
 

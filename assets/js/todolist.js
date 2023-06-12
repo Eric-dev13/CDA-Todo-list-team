@@ -15,7 +15,6 @@ let compteur = 0;
 // **********     FUNCTIONS  **************
 // ****************************************
 
-
 function tacheFait() {
     taches.forEach((tache) => {
         //i = l'id de l'element
@@ -25,7 +24,14 @@ function tacheFait() {
         //a chaque click sur l'element
         identifiant.addEventListener("click", function () {
             //on ajoute une classe
-            identifiant.classList.add("fait");
+            //identifiant.classList.add("fait");
+            var nClass=identifiant.getAttribute('class');
+            console.log(nClass);
+            if(nClass =='list-group-item border-dark fait'){
+                identifiant.classList.add("fait");
+            }else {
+                identifiant.classList.toggle("fini");
+            }
             if (tache.etat==0){
                 compteur++ ;
             }
@@ -33,13 +39,13 @@ function tacheFait() {
             
             afficheCompteur.innerHTML=compteur;
             //alert(i);
-            //console.log(compteur);
+            console.log(compteur);
         });
-
+        
     });
-
-    //  var test = compteurTacheFait();
-    //  console.log(test)
+    
+//  var test = compteurTacheFait();
+//  console.log(test)
 }
 
 // fonction pour inserer une tache
@@ -120,7 +126,6 @@ function displayTasks() {
         index++;
     });
     tacheFait();
-
 }
 
 // function compteurTacheFait( taches ) {
@@ -133,18 +138,13 @@ function displayTasks() {
 //     return compteur;
 // }
 
-
 // ************************************
 // **********     CODE   **************
 // ************************************
 
 displayTasks();
 
-document.getElementById('inserer').addEventListener('click', function(){
-insertTask();
-
-
-});
+document.getElementById('inserer').addEventListener('click', insertTask);
 
 
 //pour chaque tache
