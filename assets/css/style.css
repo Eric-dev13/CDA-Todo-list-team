@@ -13,5 +13,11 @@
 
 .affichage{
     display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+.tasks{
+    display: flex;
     justify-content: space-between;
+    
 }
