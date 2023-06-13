@@ -1,11 +1,13 @@
 import { getFromLocalStorage, setToLocalStorage } from "./localStorage.js";
 
-
 // **************************************
 // **********    GLOBALES  **************
 // **************************************
+
 // afficheCompteur dans span pour compter le nombre de taches réaliser
+var afficheCompteurAFaire = document.getElementById("compteurAFaire");
 var afficheCompteur = document.getElementById("compteur");
+var afficheCompteurTotal = document.getElementById("compteurTotal");
 const titreTache = document.getElementById("exampleInputEmail1");
 const descriptionTache = document.getElementById("exampleInputPassword1");
 const buttonForm = document.getElementById("inserer");
@@ -14,6 +16,7 @@ let taches = [];
 
 const todolist = document.querySelector('#todolist');
 let compteur = 0;
+let compterAFaire = 0;
 
 // ****************************************
 // **********     FUNCTIONS  **************
@@ -31,20 +34,21 @@ function compteurFunction() {
 }
 
 function tacheFait() {
+    // Compte les taches finis
    compteur= compteurFunction();
+   let index=0;
     taches.forEach((tache) => {
         //i = l'id de l'element
         var i = tache.id;
         //pour l'element dont i est l'id
         var identifiant = document.getElementById(i);
-        //a chaque click sur l'element
+        //a chaque click sur l'element on inverse tache.etat ( fini ou pas fini )
         identifiant.addEventListener("click", function () {
 
             if (tache.etat == 0) {
                 tache.etat = 1;
                 compteur++;
                 identifiant.classList.add("fini");
-
 
             } else if (tache.etat == 1) {
                 tache.etat = 0;
@@ -55,9 +59,16 @@ function tacheFait() {
             setToLocalStorage(taches);
             displayTasks();         
         });
-        afficheCompteur.innerHTML = compteur;
 
+        index++;
+        
     });
+    // compteur des taches a faire = total des taches - les taches finis
+    afficheCompteurAFaire.innerHTML = taches.length - compteur;
+    // les taches finis
+    afficheCompteur.innerHTML = compteur;
+    // total
+    afficheCompteurTotal.innerHTML = taches.length;
 
 }
 
